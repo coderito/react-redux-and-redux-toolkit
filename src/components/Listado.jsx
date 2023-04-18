@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Candidato from "./Candidato";
 
 export default function Listado() {
   const [cantidatos, setCantidatos] = useState([]);
@@ -14,7 +15,7 @@ export default function Listado() {
       <h1>{cantidatos.length}</h1>
 
       {cantidatos.map((item) => (
-        <p>{item.name.first}</p>
+        <Candidato user={item}/>
       ))}
     </div>
   );
