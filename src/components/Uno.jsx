@@ -1,13 +1,17 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { guardarApellido, guardarNombre } from "../store/misSlice";
+import {
+  guardarApellido,
+  guardarNombre,
+  modificarMatriz,
+} from "../store/misSlice";
 import { incrementarPuntuacion } from "../store/misSlice";
 
 export default function Uno() {
   // enviar informacion a un reducer
   const dispatch = useDispatch();
   // seleccion un estado
-  const {miNombre, miApellido} = useSelector((state) => state.unValor);
+  const { miNombre, miApellido } = useSelector((state) => state.unValor);
   const miPuntuacionAhora = useSelector((state) => state.otroValor.miPuntacion);
 
   const modificarNombre = () => {
@@ -15,12 +19,23 @@ export default function Uno() {
   };
 
   const modificarApellido = () => {
-    dispatch(guardarApellido("Patricio"))
-  }
+    dispatch(guardarApellido("Patricio"));
+  };
 
   const incrementar = () => {
-    dispatch(incrementarPuntuacion())
-  }
+    dispatch(incrementarPuntuacion());
+  };
+
+  const clickModificarMatriz = () => {
+    dispatch(
+      modificarMatriz({
+        indice: 0,
+        nuevoNombre: "Vue",
+        nuevoInicio: "Mayo del 2012",
+      })
+    );
+  };
+
   return (
     <div>
       <h1>{miNombre}</h1>
@@ -31,6 +46,8 @@ export default function Uno() {
 
       <h1>{miPuntuacionAhora}</h1>
       <button onClick={incrementar}>Incrementar</button>
+
+      <button onClick={clickModificarMatriz}>Modificar array</button>
     </div>
   );
 }
