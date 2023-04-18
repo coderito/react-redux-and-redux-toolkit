@@ -1,10 +1,17 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React from "react";
+import { useSelector } from "react-redux";
 
 export default function Dos() {
-    const miApellido = useSelector(state => state.unValor.miApellido);
+  const { bibliotecas } = useSelector((state) => state.unValor);
 
   return (
-    <h1>{miApellido}</h1>
-  )
+    <h2>
+      {bibliotecas.map((biblioteca) => (
+        <div>
+          <p>{biblioteca.nombre}</p>
+          <p>{biblioteca.inicio}</p>
+        </div>
+      ))}
+    </h2>
+  );
 }
