@@ -2,28 +2,41 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // funcion encarga de actualizar
 export const origenSlice = createSlice({
-    name: "unValor",
-    initialState: {miNombre: "Juan", miApellido: "Eulufi"},
-    reducers: {
-        guardarNombre: (state, action) => {
-            // enviando action y guardarlo en el estado
-            state.miNombre = action.payload;
-        },
-        guardarApellido: (state, action) => {
-            state.miApellido = action.payload;
-        }
-    }
-}) 
+  name: "unValor",
+  initialState: {
+    miNombre: "Juan",
+    miApellido: "Eulufi",
+    bibliotecas: [
+      { nombre: "react", inicio: 2013 },
+      { nombre: "redux", inicio: 2015 },
+    ],
+  },
+  reducers: {
+    guardarNombre: (state, action) => {
+      // enviando action y guardarlo en el estado
+      state.miNombre = action.payload;
+    },
+    guardarApellido: (state, action) => {
+      state.miApellido = action.payload;
+    },
+    modificarMatriz: (state, action) => {
+      const { indice, nuevoNombre, nuevoInicio } = action.payload;
+      state.bibliotecas[indice].nombre = nuevoNombre;
+      state.bibliotecas[indice].inicio = nuevoInicio;
+    },
+  },
+});
 
 export const otroSlice = createSlice({
-    name: "otroValor",
-    initialState: {miPuntacion: 0},
-    reducers: {
-        incrementarPuntuacion: (state) => {
-            state.miPuntacion = state.miPuntacion + 1;
-        }
-    }
-}) 
+  name: "otroValor",
+  initialState: { miPuntacion: 0 },
+  reducers: {
+    incrementarPuntuacion: (state) => {
+      state.miPuntacion = state.miPuntacion + 1;
+    },
+  },
+});
 
-export const {guardarNombre, guardarApellido} = origenSlice.actions;
-export const {incrementarPuntuacion} = otroSlice.actions;
+export const { guardarNombre, guardarApellido, modificarMatriz } =
+  origenSlice.actions;
+export const { incrementarPuntuacion } = otroSlice.actions;
