@@ -4,6 +4,8 @@ import {
   guardarApellido,
   guardarNombre,
   modificarMatriz,
+  agregarValorMatriz,
+  eliminarValorMatriz,
 } from "../store/misSlice";
 import { incrementarPuntuacion } from "../store/misSlice";
 
@@ -36,6 +38,23 @@ export default function Uno() {
     );
   };
 
+  const agregarValor = () => {
+    dispatch(
+      agregarValorMatriz({
+        nuevoNombre: "Vue",
+        nuevoInicio: "Mayo del 2012",
+      })
+    );
+  };
+
+  const eliminarValor = () => {
+    dispatch(
+      eliminarValorMatriz({
+        nombreEliminar: "react",
+      })
+    );
+  };
+
   return (
     <div>
       <h1>{miNombre}</h1>
@@ -48,6 +67,11 @@ export default function Uno() {
       <button onClick={incrementar}>Incrementar</button>
 
       <button onClick={clickModificarMatriz}>Modificar array</button>
+
+      <div>
+        <button onClick={agregarValor}>Agregar Valor</button>
+        <button onClick={eliminarValor}>Eliminar Valor</button>
+      </div>
     </div>
   );
 }

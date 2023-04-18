@@ -24,6 +24,17 @@ export const origenSlice = createSlice({
       state.bibliotecas[indice].nombre = nuevoNombre;
       state.bibliotecas[indice].inicio = nuevoInicio;
     },
+    agregarValorMatriz: (state, action) => {
+      const { nuevoNombre, nuevoInicio } = action.payload;
+      state.bibliotecas = [
+        ...state.bibliotecas,
+        { nombre: nuevoNombre, inicio: nuevoInicio },
+      ];
+    },
+    eliminarValorMatriz: (state, action) => {
+      const { nombreEliminar } = action.payload;
+      state.bibliotecas = state.bibliotecas.filter(biblioteca => biblioteca.nombre !== nombreEliminar);
+    }
   },
 });
 
@@ -37,6 +48,5 @@ export const otroSlice = createSlice({
   },
 });
 
-export const { guardarNombre, guardarApellido, modificarMatriz } =
-  origenSlice.actions;
+export const { guardarNombre, guardarApellido, modificarMatriz, agregarValorMatriz,eliminarValorMatriz } = origenSlice.actions;
 export const { incrementarPuntuacion } = otroSlice.actions;
