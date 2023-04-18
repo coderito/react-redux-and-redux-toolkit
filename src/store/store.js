@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { origenSlice } from "./misSlice";
+import { origenSlice, otroSlice } from "./misSlice";
 
 export default configureStore({
     reducer: {
         // asignando funcion
-        unValor: origenSlice.reducer
+        unValor: origenSlice.reducer,
+        otroValor: otroSlice.reducer,
     }
 })
